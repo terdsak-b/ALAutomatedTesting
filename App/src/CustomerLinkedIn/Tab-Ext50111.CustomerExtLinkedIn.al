@@ -2,7 +2,7 @@ tableextension 50111 CustomerExtLinkedIn extends Customer
 {
     fields
     {
-        field(50100; LinkedIn; Text[250])
+        field(50111; LinkedIn; Text[250])
         {
             Caption = 'LinkedIn';
             DataClassification = CustomerContent;
