@@ -1,7 +1,6 @@
-codeunit 50111 SocialMediaCodeunit
+codeunit 60100 SocialMediaCodeunit
 {
     Subtype = Test;
-
     [Test]
     procedure CheckLinkedInUrlField()
     var
@@ -18,31 +17,29 @@ codeunit 50111 SocialMediaCodeunit
         CreateNewCustomer(Customer);
 
         // [Given] A LinkedIn Profile
-        LinkedInProfile := 'https://www.linkedin.com/profile/some-profile-15879';
+        LinkedInProfile := 'https://www.linkedin.com/in/testprofile';
 
         // [When] LinkedIn value provided
         AddLinkedInProfile(Customer, LinkedInProfile);
 
         // [Then] LinkedIn should start with https://www.linkedin.com
-        //Assert.IsTrue(VerifyLinkedIn(Customer), ShouldStartMsg);
+        Assert.IsFalse(Customer.LinkedIn = '', 'LinkedIn profile was not set');
+        Assert.IsTrue(VerifyLinkedIn(Customer), ShouldStartMsg);
     end;
 
     procedure Initialize()
     begin
-        // Setup logic (if needed)
+
     end;
 
     procedure CreateNewCustomer(var Customer: Record Customer)
     begin
-        Customer.Init();
-        Customer.Name := 'Test Customer';
-        Customer.Insert();
+
     end;
 
     procedure AddLinkedInProfile(var Customer: Record Customer; ProfileLink: Text)
     begin
         Customer.Validate(LinkedIn, ProfileLink);
-        Customer.Modify();
     end;
 
     procedure VerifyLinkedIn(Customer: Record Customer): Boolean
@@ -51,5 +48,6 @@ codeunit 50111 SocialMediaCodeunit
     end;
 
     var
-    //Assert: Codeunit "Library Assert";
+        Assert: Codeunit "Assert";
+
 }
